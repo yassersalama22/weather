@@ -36,6 +36,7 @@ async function fetchWeatherData(location) {
     console.error('Error fetching weather data:', error);
     document.getElementById('weatherData').innerText =
       'Error fetching weather data.';
+    document.getElementById('weatherData').style.display = 'block';
   }
 }
 
@@ -104,4 +105,5 @@ function displayWeatherData(data) {
         <p>Temperature: ${data.currentConditions.temp}°C</p>
         <p>Conditions: ${data.currentConditions.conditions}</p>
     `;
+  weatherContainer.style.display = 'block';
 }
