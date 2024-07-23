@@ -11,6 +11,8 @@ import thunderstormImg from './images/thunderstorm.jpg';
 import windyImg from './images/windy.jpg';
 import snowImg from './images/snow.jpg';
 
+document.body.style.backgroundImage = `url(${defaultImg})`;
+
 document
   .getElementById('searchForm')
   .addEventListener('submit', function (event) {
