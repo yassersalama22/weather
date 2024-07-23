@@ -127,7 +127,8 @@ function displayWeatherData(data) {
 
 function displayForecastData(data) {
   const forecastContainer = document.getElementById('forecastData');
-  forecastContainer.innerHTML = '';
+  // forecastContainer.innerHTML = '<h2>Upcoming Weather</h2>';
+
   data.days.slice(1, 6).forEach((day) => {
     // Display the next 5 days
     const conditionIcon = day.icon;
@@ -139,13 +140,13 @@ function displayForecastData(data) {
       temperatureUnit === 'C' ? ((temperatureF - 32) * 5) / 9 : temperatureF;
 
     const forecastDayHtml = `
-        <div class="forecast-day">
-          <h3>${day.datetime}</h3>
-          <img src="${iconUrl}" alt="${condition}" style="width: 30px; height: 30px;">
-          <p>Temperature: ${temperature.toFixed(1)}°${temperatureUnit}</p>
-          <p>Conditions: ${day.conditions}</p>
-        </div>
-      `;
+      <div class="forecast-day">
+        <h3>${day.datetime}</h3>
+        <img src="${iconUrl}" alt="${condition}" style="width: 30px; height: 30px;">
+        <p>Temperature: ${temperature.toFixed(1)}°${temperatureUnit}</p>
+        <p>Conditions: ${day.conditions}</p>
+      </div>
+    `;
 
     forecastContainer.innerHTML += forecastDayHtml;
   });

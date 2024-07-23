@@ -4,27 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="unitToggle">
-      <label class="switch">
-        <input type="checkbox" id="unitSwitch" />
-        <span class="slider round"></span>
-      </label>
-      <span id="unitLabel">°F</span>
-    </div>
     <div id="app">
+      <div id="unitToggle">
+        <label class="switch">
+          <input type="checkbox" id="unitSwitch" />
+          <span class="slider"></span>
+        </label>
+        <span id="unitLabel">°F</span>
+      </div>
       <form id="searchForm">
-        <input
-          type="text"
-          id="locationInput"
-          placeholder="Enter a city name"
-          required
-        />
+        <input type="text" id="locationInput" placeholder="Enter a city name" />
         <button type="submit">Search</button>
       </form>
       <div id="weatherData"></div>
       <div id="forecastData"></div>
     </div>
+    <script src="index.js"></script>
   </body>
 </html>
