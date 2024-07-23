@@ -43,7 +43,10 @@ function displayWeatherData(data) {
   console.log(data);
 
   const weatherContainer = document.getElementById('weatherData');
-  const condition = data.currentConditions.conditions.toLowerCase();
+  const condition = data.currentConditions.conditions
+    .split(',')[0]
+    .trim()
+    .toLowerCase();
   let backgroundImage = '';
 
   switch (condition) {
@@ -90,12 +93,11 @@ function displayWeatherData(data) {
     default:
       backgroundImage = `url(${defaultImg})`;
       document.body.style.color = '#000000';
-
-      document.body.style.backgroundImage = backgroundImage;
-      weatherContainer.innerHTML = `
+  }
+  document.body.style.backgroundImage = backgroundImage;
+  weatherContainer.innerHTML = `
         <h2>Weather for ${data.resolvedAddress}</h2>
         <p>Temperature: ${data.currentConditions.temp}°C</p>
         <p>Conditions: ${data.currentConditions.conditions}</p>
     `;
-  }
 }
