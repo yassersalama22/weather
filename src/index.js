@@ -21,6 +21,7 @@ document.getElementById('unitSwitch').addEventListener('change', function () {
   const weatherData = JSON.parse(localStorage.getItem('weatherData'));
   if (weatherData) {
     displayWeatherData(weatherData);
+    displayForecastData(weatherData);
   }
 });
 
@@ -44,6 +45,7 @@ async function fetchWeatherData(location) {
     const weatherData = await response.json();
     localStorage.setItem('weatherData', JSON.stringify(weatherData));
     displayWeatherData(weatherData);
+    displayForecastData(weatherData);
   } catch (error) {
     console.error('Error fetching weather data:', error);
     document.getElementById('weatherData').innerText =
@@ -121,4 +123,32 @@ function displayWeatherData(data) {
         <p>Conditions: ${data.currentConditions.conditions}</p>
     `;
   weatherContainer.style.display = 'block'; // Show weather data
+}
+
+function displayForecastData(data) {
+  const forecastContainer = document.getElementById('forecastData');
+
+  data.days.slice(1, 6).forEach((day) => {
+    // Display the next 5 days
+    const conditionIcon = day.icon;
+    const condition = day.conditions.split(',')[0].trim().toLowerCase();
+    const iconUrl = `https://www.visualcrossing.com/img/${conditionIcon}.svg`;
+
+    const temperatureF = day.temp;
+    const temperature =
+      temperatureUnit === 'C' ? ((temperatureF - 32) * 5) / 9 : temperatureF;
+
+    const forecastDayHtml = `
+        <div class="forecast-day">
+          <h3>${day.datetime}</h3>
+          <img src="${iconUrl}" alt="${condition}" style="width: 30px; height: 30px;">
+          <p>Temperature: ${temperature.toFixed(1)}°${temperatureUnit}</p>
+          <p>Conditions: ${day.conditions}</p>
+        </div>
+      `;
+
+    forecastContainer.innerHTML += forecastDayHtml;
+  });
+
+  forecastContainer.style.display = 'flex'; // Show forecast data
 }

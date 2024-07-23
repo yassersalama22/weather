@@ -120,7 +120,8 @@ button:hover {
   background: #0056b3;
 }
 
-#weatherData {
+#weatherData,
+#forecastData {
   background: rgba(0, 0, 0, 0.5); /* Transparent black background */
   color: white; /* White text for readability */
   padding: 20px;
@@ -131,13 +132,33 @@ button:hover {
   display: none; /* Hide initially */
 }
 
-#weatherData img {
+#weatherData img,
+#forecastData img {
   display: block;
   margin: 10px auto;
 }
 
 #weatherData h2,
-#weatherData p {
+#weatherData p,
+#forecastData h2,
+#forecastData p {
   margin: 0;
   padding: 5px;
+}
+
+#forecastData {
+  display: none;
+  flex-direction: row; /* Arrange forecast days in a row */
+  justify-content: center;
+  flex-wrap: nowrap; /* Prevent wrapping to the next line */
+  overflow-x: auto; /* Allow horizontal scrolling if needed */
+}
+
+.forecast-day {
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2); /* Slightly transparent */
+  text-align: center;
+  width: 120px;
 }
