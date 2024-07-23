@@ -175,6 +175,7 @@ button:hover {
   #weatherData,
   #forecastData {
     width: 90%;
+    margin-left: 5%;
   }
 
   .forecast-day {
