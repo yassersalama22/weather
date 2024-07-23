@@ -13,6 +13,17 @@ import snowImg from './images/snow.jpg';
 
 document.body.style.backgroundImage = `url(${defaultImg})`;
 
+let temperatureUnit = 'F';
+
+document.getElementById('unitSwitch').addEventListener('change', function () {
+  temperatureUnit = this.checked ? 'C' : 'F';
+  document.getElementById('unitLabel').textContent = this.checked ? '°C' : '°F';
+  const weatherData = JSON.parse(localStorage.getItem('weatherData'));
+  if (weatherData) {
+    displayWeatherData(weatherData);
+  }
+});
+
 document
   .getElementById('searchForm')
   .addEventListener('submit', function (event) {
@@ -31,18 +42,17 @@ async function fetchWeatherData(location) {
       throw new Error('Network response was not ok');
     }
     const weatherData = await response.json();
+    localStorage.setItem('weatherData', JSON.stringify(weatherData));
     displayWeatherData(weatherData);
   } catch (error) {
     console.error('Error fetching weather data:', error);
     document.getElementById('weatherData').innerText =
       'Error fetching weather data.';
-    document.getElementById('weatherData').style.display = 'block';
+    document.getElementById('weatherData').style.display = 'block'; // Show error message
   }
 }
 
 function displayWeatherData(data) {
-  console.log(data);
-
   const weatherContainer = document.getElementById('weatherData');
   const conditionIcon = data.currentConditions.icon;
   const condition = data.currentConditions.conditions
@@ -99,11 +109,16 @@ function displayWeatherData(data) {
       document.body.style.color = '#000000';
   }
   document.body.style.backgroundImage = backgroundImage;
+
+  const temperatureF = data.currentConditions.temp;
+  const temperature =
+    temperatureUnit === 'C' ? ((temperatureF - 32) * 5) / 9 : temperatureF;
+
   weatherContainer.innerHTML = `
         <h2>Weather for ${data.resolvedAddress}</h2>
         <img src="${iconUrl}" alt="${condition}" style="width: 50px; height: 50px;">
-        <p>Temperature: ${data.currentConditions.temp}°C</p>
+        <p>Temperature: ${temperature.toFixed(1)}°${temperatureUnit}</p>
         <p>Conditions: ${data.currentConditions.conditions}</p>
     `;
-  weatherContainer.style.display = 'block';
+  weatherContainer.style.display = 'block'; // Show weather data
 }
