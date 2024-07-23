@@ -23,7 +23,7 @@ document
 
 async function fetchWeatherData(location) {
   const apiKey = 'YGKFSTXNPDEH9ACPLFHGCZ7A3'; // Replace with your actual API key
-  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${apiKey}`;
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=${apiKey}&iconSet=icons1`;
 
   try {
     const response = await fetch(url);
@@ -43,11 +43,14 @@ function displayWeatherData(data) {
   console.log(data);
 
   const weatherContainer = document.getElementById('weatherData');
+  const conditionIcon = data.currentConditions.icon;
   const condition = data.currentConditions.conditions
     .split(',')[0]
     .trim()
     .toLowerCase();
   let backgroundImage = '';
+
+  const iconUrl = `https://www.visualcrossing.com/img/${conditionIcon}.svg`;
 
   switch (condition) {
     case 'clear':
@@ -97,6 +100,7 @@ function displayWeatherData(data) {
   document.body.style.backgroundImage = backgroundImage;
   weatherContainer.innerHTML = `
         <h2>Weather for ${data.resolvedAddress}</h2>
+        <img src="${iconUrl}" alt="${condition}" style="width: 50px; height: 50px;">
         <p>Temperature: ${data.currentConditions.temp}°C</p>
         <p>Conditions: ${data.currentConditions.conditions}</p>
     `;
