@@ -7,7 +7,7 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    assetModuleFilename: 'assets/[hash][ext][query]'
+    assetModuleFilename: 'assets/[hash][ext][query]',
   },
   module: {
     rules: [
@@ -36,5 +36,9 @@ module.exports = {
     compress: true,
     port: 9000,
     open: true,
+  },
+  performance: {
+    maxAssetSize: 5000000, // 5 MB
+    maxEntrypointSize: 5000000, // 5 MB
   },
 };

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Setup</title>
-</head>
-<body>
-  <h1>Hello, Webpack!</h1>
-  <script src="index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Weather App</h1>
+      <form id="searchForm">
+        <input
+          type="text"
+          name="locationInput"
+          id="locationInput"
+          placeholder="Enter a city name..."
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div id="weatherData"></div>
+    </div>
+  </body>
 </html>

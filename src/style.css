@@ -1,6 +1,55 @@
 body {
-  background-color: lightblue;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  color: #000000; /* Default color */
 }
-h1 {
-  color: darkblue;
+
+#app {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Slightly transparent background for readability */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+#searchForm {
+  margin-bottom: 20px;
+}
+
+#locationInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+#weatherData h2,
+#weatherData p {
+  margin: 0;
+  padding: 5px;
 }
