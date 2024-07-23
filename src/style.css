@@ -59,6 +59,15 @@ button:hover {
   background: #0056b3;
 }
 
+#weatherData {
+  background: rgba(0, 0, 0, 0.5); /* Transparent black background */
+  color: white; /* White text for readability */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
 #weatherData h2,
 #weatherData p {
   margin: 0;
