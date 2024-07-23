@@ -153,7 +153,6 @@ button:hover {
 }
 
 #forecastData {
-  display: flex;
   flex-direction: row; /* Arrange forecast days in a row */
   justify-content: center;
   flex-wrap: nowrap; /* Prevent wrapping to the next line */

@@ -127,7 +127,8 @@ function displayWeatherData(data) {
 
 function displayForecastData(data) {
   const forecastContainer = document.getElementById('forecastData');
-  // forecastContainer.innerHTML = '<h2>Upcoming Weather</h2>';
+  forecastContainer.innerHTML = ''; // Remove header
+  forecastContainer.style.display = 'flex'; // Show forecast data
 
   data.days.slice(1, 6).forEach((day) => {
     // Display the next 5 days
